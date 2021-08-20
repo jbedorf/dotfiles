@@ -1,0 +1,28 @@
+root = true
+
+[*]
+indent_style = space
+trim_trailing_whitespace = true # Remove whitespace from line endings.
+insert_final_newline = true
+charset = utf-8
+
+[*.py] # Match python files.
+indent_style = space
+indent_size = 4
+
+[*.sh] # Shellscripts.
+indent_style = space
+indent_size = 4
+
+[*.tf] # Terraform code.
+# See https://www.terraform.io/docs/configuration/style.html
+indent_style = space
+indent_size = 2
+
+[*.json] # JSON files.
+indent_style = space
+indent_size = 4
+
+[*.{yml, yaml}] # yaml files.
+indent_style = space
+indent_size = 2

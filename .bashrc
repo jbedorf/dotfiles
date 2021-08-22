@@ -76,8 +76,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -85,7 +85,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -117,10 +117,41 @@ if ! shopt -oq posix; then
 fi
 
 alias rm='rm -i'
-# alias cp='cp -i'
+alias cp='cp -i'
 alias mv='mv -i'
 
 
 # The next line updates PATH for the Google Cloud SDK if available
 if [ -f '/google-cloud-sdk/path.bash.inc' ]; then . '/google-cloud-sdk/path.bash.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/google-cloud-sdk/completion.bash.inc' ]; then . '/google-cloud-sdk/completion.bash.inc'; fi
 
+# Conda is installed on different locations on different systems, find the one on this system
+# and initialize it.
+
+if [ -f '/home/jbedorf/miniconda3/bin/conda' ];
+then
+    CONDA_PATH="/home/jbedorf/miniconda3"
+elif [ -f '/opt/conda/bin/conda' ];
+then
+    CONDA_PATH="/opt/conda"
+else
+    CONDA_PATH=""
+fi
+
+echo "CONDA PATH: ", $CONDA_PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(${CONDA_PATH}'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "${CONDA_PATH}/etc/profile.d/conda.sh" ]; then
+        . "${CONDA_PATH}/etc/profile.d/conda.sh"
+    else
+        export PATH="${CONDA_PATH}/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

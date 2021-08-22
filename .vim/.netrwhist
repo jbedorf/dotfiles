@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/mnt/c/Users/Jeroen/Desktop/test-word/ORI'
+let g:netrw_dirhist_4='/mnt/c/Users/Jeroen/Desktop/test-word/JB'
+let g:netrw_dirhist_3='/home/jbedorf/.config/deepsim-vestas'
+let g:netrw_dirhist_2='/home/jbedorf/miniconda3/envs/deepsim/lib/python3.8/site-packages/ds_exec/ds_client/__pycache__'
+let g:netrw_dirhist_1='/tmp/docker-files/ds_packages/deepsim-2.1.0.data'
